@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Account - PrintAhead</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-mark">PA</span>
+        <div>
+          <p class="brand-name">PrintAhead</p>
+          <p class="brand-sub">My Account</p>
+        </div>
+      </div>
+      <div class="cta">
+        <a href="index.html" class="btn ghost">Back to Store</a>
+        <button id="signOutBtn" class="btn">Sign Out</button>
+      </div>
+    </header>
+
+    <main class="page account-page">
+      <section class="panel">
+        <header class="panel-head">
+          <div>
+            <p class="eyebrow">Account</p>
+            <h2>Profile Information</h2>
+          </div>
+        </header>
+
+        <div id="profileInfo" class="profile-info">
+          <div class="loading">Loading profile...</div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <header class="panel-head">
+          <div>
+            <p class="eyebrow">Order History</p>
+            <h2>My Orders</h2>
+          </div>
+        </header>
+
+        <div id="orderHistory" class="order-history">
+          <div class="loading">Loading orders...</div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <header class="panel-head">
+          <div>
+            <p class="eyebrow">Wallet</p>
+            <h2>Print Credits</h2>
+          </div>
+        </header>
+
+        <div class="wallet-section">
+          <div class="wallet-balance">
+            <div class="balance-amount" id="accountBalance">₹0</div>
+            <div class="muted small">Available Credits</div>
+          </div>
+          <button id="addCreditsBtn" class="btn primary">Add Credits</button>
+
+          <div class="transactions">
+            <h3>Recent Transactions</h3>
+            <div id="transactionsList" class="transactions-list">
+              <div class="loading">Loading transactions...</div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-storage.js"></script>
+
+    <!-- Config and Services -->
+    <script src="config/firebase-config.js"></script>
+    <script src="services/auth-service.js"></script>
+    <script src="services/firestore-service.js"></script>
+    <script src="account.js"></script>
+  </body>
+</html>

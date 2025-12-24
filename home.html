@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PrintAhead – Welcome</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-mark">PA</span>
+        <div>
+          <p class="brand-name">PrintAhead</p>
+          <p class="brand-sub">Campus Stationery & Print Pickup</p>
+        </div>
+      </div>
+    </header>
+
+    <main class="page home-page">
+      <section class="hero">
+        <div class="hero-content">
+          <h1>Welcome to PrintAhead</h1>
+          <p class="muted">
+            Order stationery or upload files for printing. Choose your role to
+            get started.
+          </p>
+        </div>
+      </section>
+
+      <section class="role-selection">
+        <div class="role-cards">
+          <div class="role-card" id="buyerCard">
+            <div class="role-icon">🛒</div>
+            <h2>I'm a Buyer</h2>
+            <p class="muted">
+              Browse stationery, upload files for printing, manage orders, and
+              track your account.
+            </p>
+            <button
+              class="btn primary"
+              onclick="window.location.href='index.html'"
+            >
+              Continue as Buyer
+            </button>
+          </div>
+
+          <div class="role-card" id="sellerCard">
+            <div class="role-icon">🏪</div>
+            <h2>I'm a Seller</h2>
+            <p class="muted">
+              Manage orders, update order status, view statistics, and handle
+              customer requests.
+            </p>
+            <button
+              class="btn primary"
+              onclick="window.location.href='admin.html'"
+            >
+              Continue as Seller
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section class="features">
+        <h2>Why PrintAhead?</h2>
+        <div class="features-grid">
+          <div class="feature-item">
+            <strong>📦 Quick Pickup</strong>
+            <p>Prepare orders ahead. We'll notify when ready.</p>
+          </div>
+          <div class="feature-item">
+            <strong>💰 Easy Payment</strong>
+            <p>Pay with Cash, Card, UPI, or Print Credits.</p>
+          </div>
+          <div class="feature-item">
+            <strong>🤖 AI Assistant</strong>
+            <p>Get help with navigation and order tracking.</p>
+          </div>
+          <div class="feature-item">
+            <strong>📱 Track Orders</strong>
+            <p>View order history and status updates.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>PrintAhead • Campus Stationery & Xerox</p>
+    </footer>
+  </body>
+</html>

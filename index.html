@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PrintAhead – Campus Stationery & Xerox</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-mark">PA</span>
+        <div>
+          <p class="brand-name">PrintAhead</p>
+          <p class="brand-sub">Campus Stationery & Print Pickup</p>
+        </div>
+      </div>
+      <div class="cta">
+        <p class="muted">Prepare orders ahead. We'll notify when ready.</p>
+        <div id="authContainer"></div>
+        <button id="scrollOrder" class="btn primary">Go to Order</button>
+      </div>
+    </header>
+
+    <main class="page">
+      <section class="hero">
+        <div>
+          <p class="eyebrow">Quick pickups • Clear pricing • Reliable prints</p>
+          <h1>Order stationery or upload files for Xerox before you arrive.</h1>
+          <p class="muted">
+            Choose from popular items, submit PDFs, or request custom prints.
+            The store prepares everything for quick pickup.
+          </p>
+          <div class="hero-actions">
+            <button id="startStationery" class="btn primary">
+              Browse Stationery
+            </button>
+            <button id="startPrints" class="btn ghost">Upload for Xerox</button>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <p class="muted">Next available pickup</p>
+          <p class="time" id="pickupWindow">Today, 3:00 – 5:00 PM</p>
+          <p class="muted small">You’ll get notified once confirmed.</p>
+        </div>
+      </section>
+
+      <section class="panel" id="stationeryPanel">
+        <header class="panel-head">
+          <div>
+            <p class="eyebrow">Stationery</p>
+            <h2>Popular campus picks</h2>
+          </div>
+          <div class="filters">
+            <input
+              id="itemSearch"
+              type="search"
+              placeholder="Search pens, notebooks..."
+            />
+            <select id="categoryFilter">
+              <option value="all">All items</option>
+              <option value="writing">Writing</option>
+              <option value="notebooks">Notebooks</option>
+              <option value="supplies">Supplies</option>
+            </select>
+          </div>
+        </header>
+        <div id="itemsGrid" class="grid"></div>
+      </section>
+
+      <section class="panel" id="printPanel">
+        <header class="panel-head">
+          <div>
+            <p class="eyebrow">Xerox & Printing</p>
+            <h2>Upload files or pick a template</h2>
+          </div>
+          <div class="muted small">Accepted: PDF, DOCX, PPT, images.</div>
+        </header>
+
+        <div class="layout">
+          <div class="card">
+            <h3>Upload documents</h3>
+
+            <label class="upload">
+              <input type="file" id="fileInput" multiple />
+              <span>Click or drop files here</span>
+            </label>
+
+            <ul id="fileList" class="chips"></ul>
+
+            <div class="field">
+              <label>Template</label>
+              <select id="templateSelect"></select>
+            </div>
+
+            <div class="field inline">
+              <div>
+                <label>Copies</label>
+                <input id="copies" type="number" min="1" value="1" />
+              </div>
+              <div>
+                <label>Color</label>
+                <select id="colorMode">
+                  <option value="mono">Black & White</option>
+                  <option value="color">Color</option>
+                </select>
+              </div>
+              <div>
+                <label>Sides</label>
+                <select id="sides">
+                  <option value="single">Single</option>
+                  <option value="duplex">Double</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="field">
+              <label>Notes</label>
+              <textarea id="printNotes" rows="3"></textarea>
+            </div>
+
+            <button id="addPrintJob" class="btn primary block">
+              Add to Order
+            </button>
+          </div>
+
+          <div class="card">
+            <h3>Ready-made templates</h3>
+            <div id="templateCards" class="grid compact"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel" id="orderPanel">
+        <header class="panel-head">
+          <div>
+            <p class="eyebrow">Order summary</p>
+            <h2>Review & submit</h2>
+          </div>
+        </header>
+
+        <div class="layout">
+          <div class="card">
+            <ul id="cartList" class="list"></ul>
+            <div class="total-row">
+              <span class="muted">Total</span>
+              <strong id="totalAmount">₹0</strong>
+            </div>
+          </div>
+
+          <div class="card">
+            <form id="orderForm">
+              <input id="customerName" placeholder="Name" />
+              <input id="customerPhone" placeholder="Phone" />
+              <input id="pickupDate" type="date" required />
+              <input id="pickupTime" type="time" required />
+              <div class="field">
+                <label>Payment Method</label>
+                <select id="paymentMethod" required>
+                  <option value="cash">Cash on Delivery</option>
+                  <option value="card">Card Payment</option>
+                  <option value="upi">UPI Payment</option>
+                  <option
+                    value="credits"
+                    id="creditsPaymentOption"
+                    style="display: none"
+                  >
+                    Print Credits
+                  </option>
+                </select>
+                <div
+                  id="creditsBalanceDisplay"
+                  class="muted small"
+                  style="display: none; margin-top: 4px"
+                >
+                  Balance: ₹<span id="checkoutCredits">0</span>
+                </div>
+              </div>
+              <button type="submit" class="btn primary block">
+                Submit Order
+              </button>
+            </form>
+            <div id="status" class="status muted small"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>PrintAhead • Campus Stationery & Xerox</p>
+    </footer>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-storage.js"></script>
+
+    <!-- Config and Services -->
+    <script src="config/firebase-config.js"></script>
+    <script src="utils/cart-manager.js"></script>
+    <script src="services/auth-service.js"></script>
+    <script src="services/firestore-service.js"></script>
+    <script src="services/storage-service.js"></script>
+    <script src="services/order-service.js"></script>
+    <script src="services/ai-service.js"></script>
+    <script src="services/chatbot-service.js"></script>
+
+    <!-- Main App -->
+    <script src="app.js"></script>
+
+    <!-- Chatbot -->
+    <button class="chatbot-toggle" id="chatbotToggle">💬</button>
+    <div class="chatbot-container" id="chatbotContainer">
+      <div class="chatbot-header">
+        <h3>PrintAhead Assistant</h3>
+        <button class="chatbot-close" id="chatbotClose">×</button>
+      </div>
+      <div class="chatbot-messages" id="chatbotMessages">
+        <div class="chatbot-message bot">
+          Hi! I'm your PrintAhead assistant. I can help you navigate the
+          website, check your order history, and answer questions about our
+          services. How can I help you today?
+        </div>
+      </div>
+      <div class="chatbot-input-container">
+        <input
+          type="text"
+          class="chatbot-input"
+          id="chatbotInput"
+          placeholder="Type your message..."
+        />
+        <button class="chatbot-send" id="chatbotSend">→</button>
+      </div>
+    </div>
+  </body>
+</html>

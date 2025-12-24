@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard - PrintAhead</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="admin.css" />
+  </head>
+
+  <body>
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-mark">PA</span>
+        <div>
+          <p class="brand-name">PrintAhead Admin</p>
+          <p class="brand-sub">Order Management Dashboard</p>
+        </div>
+      </div>
+      <div class="cta">
+        <span id="adminName" class="muted"></span>
+        <a href="index.html" class="btn ghost">Back to Store</a>
+        <button id="signOutBtn" class="btn">Sign Out</button>
+      </div>
+    </header>
+
+    <main class="page admin-page">
+      <section class="panel">
+        <header class="panel-head">
+          <div>
+            <p class="eyebrow">Orders</p>
+            <h2>Order Management</h2>
+          </div>
+          <div class="filters">
+            <select id="statusFilter">
+              <option value="all">All Status</option>
+              <option value="pending">Pending</option>
+              <option value="processing">Processing</option>
+              <option value="ready">Ready</option>
+              <option value="completed">Completed</option>
+              <option value="cancelled">Cancelled</option>
+            </select>
+            <input type="date" id="dateFilter" />
+            <button id="clearFilters" class="btn ghost">Clear</button>
+          </div>
+        </header>
+
+        <div id="ordersContainer" class="orders-container">
+          <div class="loading">Loading orders...</div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <header class="panel-head">
+          <div>
+            <p class="eyebrow">Statistics</p>
+            <h2>Today's Overview</h2>
+          </div>
+        </header>
+        <div id="statsContainer" class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-value" id="statPending">0</div>
+            <div class="stat-label">Pending</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" id="statReady">0</div>
+            <div class="stat-label">Ready</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" id="statCompleted">0</div>
+            <div class="stat-label">Completed</div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-storage.js"></script>
+
+    <!-- Config and Services -->
+    <script src="config/firebase-config.js"></script>
+    <script src="services/auth-service.js"></script>
+    <script src="services/firestore-service.js"></script>
+    <script src="admin.js"></script>
+  </body>
+</html>
